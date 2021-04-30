@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-class Home extends Component {
+
+class DashboardConfig extends Component {
     render() {
         return (
             <div className="container">
-                <h1>Home Page</h1>
-                <p>skeletal settup for the home page</p>
-                
+                <div className="row">
+                    <h1>Dashboard Configuration</h1>
+                </div>
             </div>
         );
     }
 }
 
-export default Home;
+export default DashboardConfig;

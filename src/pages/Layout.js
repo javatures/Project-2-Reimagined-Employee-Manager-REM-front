@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router';
 import Ghud from './Ghud';
+import Dashboard from './Dashboard';
+import DashboardConfig from './DashboardConfig';
 import Header from './Header';
 import Home from './Home';
 
@@ -20,6 +22,8 @@ class Layout extends Component {
                     <Route exact path="/" component={Home} />
                     <Route path="/main" component={Home} />
                     <Route path="/ghud" component={Ghud} />
+                    <Route path="/dash" component={Dashboard} />
+                    <Route path="/dashconfig" component={DashboardConfig} />
                 </div>
             </div>
         );
