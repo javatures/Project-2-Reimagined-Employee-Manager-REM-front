@@ -3,6 +3,9 @@ import { Route } from 'react-router';
 import EmployeeProfile from './EmployeeProfile';
 import EmployeeSignin from './EmployeeSignin';
 import EployeeRegistration from './EployeeRegistration';
+import Ghud from './Ghud';
+import Dashboard from './Dashboard';
+import DashboardConfig from './DashboardConfig';
 import Header from './Header';
 import Home from './Home';
 import Tasks from './Tasks';
@@ -26,6 +29,9 @@ class Layout extends Component {
                     <Route path="/signin" component={EmployeeSignin} />
                     <Route path="/portal" component={EmployeeProfile} />
                     <Route path="/tasks" component={Tasks} />
+                    <Route path="/ghud" component={Ghud} />
+                    <Route path="/dash" component={Dashboard} />
+                    <Route path="/dashconfig" component={DashboardConfig} />
                 </div>
             </div>
         );
