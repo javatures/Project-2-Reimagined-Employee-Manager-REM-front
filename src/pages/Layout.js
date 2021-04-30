@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router';
+import EmployeeProfile from './EmployeeProfile';
+import EmployeeSignin from './EmployeeSignin';
 import EployeeRegistration from './EployeeRegistration';
 import Header from './Header';
 import Home from './Home';
+import Tasks from './Tasks';
 
 class Layout extends Component {
     render() {
@@ -20,6 +23,9 @@ class Layout extends Component {
                     <Route exact path="/" component={Home} />
                     <Route path="/main" component={Home} />
                     <Route path="/registration" component={EployeeRegistration} />
+                    <Route path="/signin" component={EmployeeSignin} />
+                    <Route path="/portal" component={EmployeeProfile} />
+                    <Route path="/tasks" component={Tasks} />
                 </div>
             </div>
         );
