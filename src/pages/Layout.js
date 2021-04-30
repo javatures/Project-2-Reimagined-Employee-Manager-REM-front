@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router';
+import EployeeRegistration from './EployeeRegistration';
 import Header from './Header';
 import Home from './Home';
 
@@ -18,6 +19,7 @@ class Layout extends Component {
                 <div className="container-fluid mb-5 mt-5">
                     <Route exact path="/" component={Home} />
                     <Route path="/main" component={Home} />
+                    <Route path="/registration" component={EployeeRegistration} />
                 </div>
             </div>
         );
