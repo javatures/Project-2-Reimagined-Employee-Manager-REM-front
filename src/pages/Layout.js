@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router';
 import EmployeeProfile from './EmployeeProfile';
 import EmployeeSignin from './EmployeeSignin';
-import EployeeRegistration from './EployeeRegistration';
+import EployeeRegistration from './EmployeeRegistration';
 import Ghud from './Ghud';
 import Dashboard from './Dashboard';
 import DashboardConfig from './DashboardConfig';
