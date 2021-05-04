@@ -16,7 +16,7 @@ class Layout extends Component {
         return (
             <div>
                 <div className="fixed-top mb-5">
-                    <Header />
+                    <Header {...this.props} />
                 </div>
                 <br/>
                 <br/>
