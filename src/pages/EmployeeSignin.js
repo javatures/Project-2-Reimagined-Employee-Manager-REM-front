@@ -27,14 +27,18 @@ class EmployeeSignin extends Component {
         axios.post('http://localhost:8080/employeeLogin', this.state.employee)
         .then(response => {
             console.log('logging in user');
+            localStorage.setItem("id", response.data.employeeID);
             localStorage.setItem("employee", response.data.email);
             localStorage.setItem("type", response.data.employeeTypeID);
+            localStorage.setItem("firstName", response.data.firstName);
+            localStorage.setItem("lastName", response.data.lastName);
             console.log(response.data.employeeTypeID);
             alert('Login successfull');
-            this.props.history.push('main');            
+            this.props.history.push('/portal');            
         })
         .catch(error => {
             alert('failed to log in');
+            window.location.reload();
             //display error message
         })
     }
