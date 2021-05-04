@@ -33,6 +33,7 @@ class Requests extends Component {
         .then(response => {
             alert("Your request has been submitted");
             this.props.history.push("requests");
+            window.location.reload();
         }).catch(error => {
             alert("There was an error processing your request");
             console.log(error);
