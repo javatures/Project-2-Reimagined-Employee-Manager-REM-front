@@ -30,8 +30,8 @@ class EmployeeSignin extends Component {
             localStorage.setItem("employee", response.data.email);
             localStorage.setItem("type", response.data.employeeTypeID);
             console.log(response.data.employeeTypeID);
-            alert('Login successfull');
-            this.props.history.push('main');            
+            alert('Login successful');
+            this.props.history.push('main');
         })
         .catch(error => {
             alert('failed to log in');
