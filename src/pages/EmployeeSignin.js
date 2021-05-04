@@ -35,6 +35,7 @@ class EmployeeSignin extends Component {
             console.log(response.data.employeeTypeID);
             alert('Login successfull');
             this.props.history.push('/portal');            
+
         })
         .catch(error => {
             alert('failed to log in');

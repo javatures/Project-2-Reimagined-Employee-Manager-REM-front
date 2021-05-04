@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-class EployeeRegistration extends Component {
+class EmployeeRegistration extends Component {
 
     state = {
         employee: {
@@ -31,7 +31,7 @@ class EployeeRegistration extends Component {
         .then(response => {
             //nav to a thank you page
             console.log('employee added');
-            console.log(this.state.employee)
+            console.log(this.state.employee);
             alert('Registration Successful');
             this.props.history.push('main');
         })
@@ -108,4 +108,4 @@ class EployeeRegistration extends Component {
     }
 }
 
-export default EployeeRegistration;
+export default EmployeeRegistration;

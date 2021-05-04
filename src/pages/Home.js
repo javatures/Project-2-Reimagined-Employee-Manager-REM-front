@@ -10,8 +10,8 @@ class Home extends Component {
                 <Link to="/registration" className="btn btn-primary m-2">Register</Link>
                 <Link to="/signin" className="btn btn-primary m-2">Signin</Link>
                 <Link to="/portal" className="btn btn-primary m-2">Portal</Link>
-                <Link to="/tasks" className="btn btn-primary m-2">Tasks</Link>     
-                <Link to="/ghud" className="btn btn-primary m-2">ghuD Stuff</Link>     
+                <Link to="/tasks" className="btn btn-primary m-2">Tasks</Link>
+                <Link to="/ghud" className="btn btn-primary m-2">ghuD Stuff</Link>  
             </div>
         );
     }
