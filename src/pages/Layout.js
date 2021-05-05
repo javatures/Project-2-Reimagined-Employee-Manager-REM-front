@@ -8,6 +8,7 @@ import DashboardConfig from './DashboardConfig';
 import Header from './Header';
 import Home from './Home';
 import Tasks from './Tasks';
+import SubmitRequest from './SubmitRequest';
 import Requests from './Requests';
 import EmployeeRegistration from './EmployeeRegistration';
 import Admin from './Admin';
@@ -32,6 +33,7 @@ class Layout extends Component {
                     <Route path="/ghud" component={Ghud} />
                     <Route path="/dash" component={Dashboard} />
                     <Route path="/dashconfig" component={DashboardConfig} />
+                    <Route path="/submitrequest" component={SubmitRequest} />
                     <Route path="/requests" component={Requests} />
                     <Route path="/admin" component={Admin} />
                 </div>
