@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import DashboardConfig from './DashboardConfig';
 
 
 class Dashboard extends Component {
@@ -16,6 +17,7 @@ class Dashboard extends Component {
                     <div className="col"></div>
                     <div className="col">
                         <Link to="/dashconfig" className="btn btn-primary">Manage Dashboard</Link>
+                        <Link to="/" className="btn btn-primary">Main</Link>
                     </div>   
                 </div>
             </div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {RangeStepInput} from 'react-range-step-input';
-
+import { Link } from 'react-router-dom';
 
 
 class DashboardConfig extends Component {
@@ -27,7 +27,7 @@ class DashboardConfig extends Component {
                 <div className="row">
                     <div className="col">
                         <RangeStepInput
-                        name="red"
+                        id="red"
                         min={0} max={255}
                         value={this.state.valueR} step={1}
                         onChange={this.handleChangeR}
@@ -39,7 +39,7 @@ class DashboardConfig extends Component {
                 <div className="row">
                     <div className="col">
                     <RangeStepInput
-                        name="red"
+                        name="green"
                         min={0} max={255}
                         value={this.state.valueG} step={1}
                         onChange={this.handleChangeG}
@@ -51,7 +51,7 @@ class DashboardConfig extends Component {
                 <div className="row">
                     <div className="col">
                     <RangeStepInput
-                        name="red"
+                        name="blue"
                         min={0} max={255}
                         value={this.state.valueB} step={1}
                         onChange={this.handleChangeB}
@@ -64,13 +64,17 @@ class DashboardConfig extends Component {
                 
                     <button type="submit">Save</button>
                 </form>
+                <Link to="/" className="btn btn-primary">Main</Link>
+                <Link to="/dash" className="btn btn-primary">Dashboard</Link>
             </div>
         );
     }
     handleSubmit = (event) => {
         //save color to database
-        console.log(event.target.valueR);
-
+        event.preventDefault();
+        let color = "rgb("+this.state.valueR+","+this.state.valueG+","+this.state.valueB+")";
+        console.log(color);
+        
     }
     handleChangeR = (event) => {
         const value = event.target.value;
