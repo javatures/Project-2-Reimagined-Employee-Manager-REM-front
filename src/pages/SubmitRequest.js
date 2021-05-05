@@ -39,7 +39,7 @@ class SubmitRequest extends Component {
         event.preventDefault();
 
         console.log(this.state.request);
-        axios.post("localhost:8080/createReimbursement", this.state.request)
+        axios.post("http://localhost:8080/createReimbursement", this.state.request)
         .then(response => {
             alert("Your request has been submitted");
             this.props.history.push("requests");
