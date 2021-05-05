@@ -10,8 +10,10 @@ import Home from './Home';
 import Tasks from './Tasks';
 import SubmitRequest from './SubmitRequest';
 import Requests from './Requests';
+import PendingRequests from './PendingRequests';
 import EmployeeRegistration from './EmployeeRegistration';
 import Admin from './Admin';
+
 
 class Layout extends Component {
     render() {
@@ -35,6 +37,7 @@ class Layout extends Component {
                     <Route path="/dashconfig" component={DashboardConfig} />
                     <Route path="/submitrequest" component={SubmitRequest} />
                     <Route path="/requests" component={Requests} />
+                    <Route path="/pendingrequests" component={PendingRequests}/>
                     <Route path="/admin" component={Admin} />
                 </div>
             </div>

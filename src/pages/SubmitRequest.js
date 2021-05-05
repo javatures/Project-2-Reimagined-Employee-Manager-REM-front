@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 class SubmitRequest extends Component {
     state = {
         request: {
-            description: '',
+            reason: '',
             amount: 0,
             submittedDate: '',
             employeeID: 0
@@ -62,8 +62,8 @@ class SubmitRequest extends Component {
                 <br />
                 <form onSubmit={this.handleSubmit} encType="multipart/form-data">
                     <div className="mb-3 col-md-4">
-                        <label htmlFor="description" className="form-label">Description:</label>
-                        <textarea onChange={this.handleChange} className="form-control" name="description" id="description" required/>
+                        <label htmlFor="reason" className="form-label">Reason:</label>
+                        <textarea onChange={this.handleChange} className="form-control" name="reason" id="reason" required/>
                     </div>
                     {/* Can use this later to upload image */}
                     {/* <div className="mb-3 col-md-4">
