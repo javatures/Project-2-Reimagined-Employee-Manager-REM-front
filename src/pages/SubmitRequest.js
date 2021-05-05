@@ -81,7 +81,7 @@ class SubmitRequest extends Component {
                         <button type="submit" className="btn btn-primary">Submit</button>
                     </div>
                 </form>
-                <Link to="/" className="btn btn-primary">Back to Main</Link>
+                <Link to="/requests" className="btn btn-primary">Back to Requests Dashboard</Link>
             </div>
         )
         return body;
