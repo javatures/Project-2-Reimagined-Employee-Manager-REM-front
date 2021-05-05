@@ -18,7 +18,28 @@ class Ghud extends Component {
             thoughtLocation: '',
             thoughtFrame: '',
             vibeID: ''
-        }
+        },
+
+        thoughts: []
+    }
+
+    componentDidMount() {
+        axios.get("http://localhost:8080/listThoughts")
+        .then(response => {
+            this.setState ({
+                thoughts: response.data
+            })
+        }).catch(error => {
+            console.log('error retrieving thoughts');
+        })
+    }
+
+    renderThoughts = () => {
+        return this.state.thoughts.map((thought, index) => {
+            return <div className="col mb-4">
+                {thought.thoughtTLDR}
+            </div>
+        })
     }
 
     handleChangeThought = (event) => {
@@ -90,6 +111,8 @@ class Ghud extends Component {
                     <div className="col-md-4">
                         <h2>Thought</h2>
                         <br/>
+
+                        {/* code for creating thoughts */}
                         <h3>Create A Thought</h3>
                         <form onSubmit={this.handleSubmitThought} className="needs-validation" noValidate>
                             <div className="mb-3 col-md-4">
@@ -124,6 +147,13 @@ class Ghud extends Component {
                                 <button className="btn btn-primary" type="submit">Submit thought</button>
                             </div>
                         </form>
+
+                        {/* code for viewing thoughts */}
+                        <h3>View Thoughts</h3>
+                        <div className="container">
+                            {this.renderThoughts()}
+                        </div>
+
                     </div>
                     <div className="col-md-4">
                         <h2>Vibe</h2>

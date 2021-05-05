@@ -5,3 +5,14 @@ h1 {
 h3 {
   font-family: 'Antonio', sans-serif;
 }
+
+.jumbotron {
+  padding: 4rem 2rem;
+  margin-bottom: 2rem;
+  background-color: var(--bs-light);
+  border-radius: .3rem;  
+}
+
+.form-align {
+  text-align: center;
+}
