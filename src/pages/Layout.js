@@ -11,6 +11,7 @@ import Home from './Home';
 import Tasks from './Tasks';
 import SubmitRequest from './SubmitRequest';
 import Requests from './Requests';
+import PendingRequests from './PendingRequests';
 
 class Layout extends Component {
     render() {
@@ -36,6 +37,7 @@ class Layout extends Component {
                     <Route path="/dashconfig" component={DashboardConfig} />
                     <Route path="/submitrequest" component={SubmitRequest} />
                     <Route path="/requests" component={Requests} />
+                    <Route path="/pendingrequests" component={PendingRequests}/>
                 </div>
             </div>
         );
