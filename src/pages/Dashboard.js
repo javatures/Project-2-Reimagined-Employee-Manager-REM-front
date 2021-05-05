@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom';
 
 
 class Dashboard extends Component {
+    
+    
     render() {
+
         return (
-            <div className="container">
+            <div className="container" id="color" >
                 <div className="row">
                     <div className="col">
                         <h1>Here's your dashboard!!</h1>
@@ -13,15 +16,8 @@ class Dashboard extends Component {
                     <div className="col"></div>
                     <div className="col">
                         <Link to="/dashconfig" className="btn btn-primary">Manage Dashboard</Link>
-                    </div>
-                    
+                    </div>   
                 </div>
-
-
-
-                
-                
-               
             </div>
         );
     }
