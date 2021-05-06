@@ -19,7 +19,8 @@ class Ghud extends Component {
             thoughtTLDR: '',
             thoughtLocation: '',
             thoughtFrame: '',
-            vibeID: ''
+            vibeID: '',
+            employeeID: ''
         },
 
         thoughts: [],
@@ -29,12 +30,12 @@ class Ghud extends Component {
 
     componentDidMount() {
         const employeeID = localStorage.getItem("id");
-        const params = { employeeID }
+        const params = { employeeID };
         axios.get("http://localhost:8080/findEmployee", { params })
         .then(response => {
             this.setState ({
                 employee: response.data
-            })
+            });
         }).catch(error => {
             console.log('error finding employee');
         })
@@ -48,6 +49,40 @@ class Ghud extends Component {
         .catch(error => {
             console.log('error listing thoughts by employee');
         })
+
+    }
+
+    listOfThoughts = () => {
+        // map each thought from thoughts to a table row
+        let tempThoughts = this.state.thoughts.map((thought) =>
+            <tr key={thought.thoughtID}>
+                <th scope="row">{thought.thoughtID}</th>
+                <td>{thought.thoughtFrame}</td>
+                <td>{thought.thoughtLocation}</td>
+                <td>{thought.thoughtTLDR}</td>
+                <td>{thought.vibeID}</td>
+                <td>{thought.employeeID}</td>
+            </tr>)
+
+        return tempThoughts;
+    }
+
+    thoughtTable = () => {
+        return <table className="table">
+            <thead>
+                <tr>
+                    <th scope="col">Thought ID</th>
+                    <th scope="col">Thought Frame</th>
+                    <th scope="col">Thought Location</th>
+                    <th scope="col">Thought TLDR</th>
+                    <th scope="col">Thought Vibe</th>
+                    <th scope="col">Thought Employee</th>
+                </tr>
+            </thead>
+            <tbody className="form-align">
+                {this.listOfThoughts()}
+            </tbody>
+        </table>
     }
 
     handleChangeThought = (event) => {
@@ -116,22 +151,31 @@ class Ghud extends Component {
             <p>Please log in to view your headspace</p>
         )
 
+        let viewThoughts = (
+            null
+        )
+
+        let viewVibes = (
+            null
+        )
+
         if (localStorage.getItem("id") != null) {
             header = (
                 <div id="rowTitle" className="row pt-5 px-5">
                     <div className="col-md-12">
-                        <h1>Headspace: {this.state.employee.firstName}</h1>
+                        <h1>Headspace: {this.state.employee.firstName} {this.state.employee.lastName} ({this.state.employee.employeeID})</h1>
                     </div>
                 </div>
             )
-            if(this.state.thoughts.length === 0 && this.state.vibes.length === 0) {
-                views = (
-                    <p>Congratulations- your headspace is clear</p>
+            if(this.state.thoughts.length === 0) {
+                viewThoughts = (
+                    <p>
+                        Congratulations- your thoughts are clear.
+                    </p>
                 )
             }
             else {
-                views = (null
-                )
+                viewThoughts = this.thoughtTable();
             }
         }
 
@@ -187,7 +231,7 @@ class Ghud extends Component {
                         {/* code for viewing thoughts */}
                         <h3>View Thoughts</h3>
                         <div className="container">
-                            {/* display thoughts in tabular format here */}
+                            {viewThoughts}
                         </div>
 
                     </div>
