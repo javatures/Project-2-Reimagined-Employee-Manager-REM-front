@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 class Ghud extends Component {
 
     state = {
+        employee: {},
+
         vibe: {
             vibeID: '',
             vibeTLDR: '',
@@ -20,25 +22,31 @@ class Ghud extends Component {
             vibeID: ''
         },
 
-        thoughts: []
+        thoughts: [],
+        employees: [],
+        vibes: []
     }
 
     componentDidMount() {
-        axios.get("http://localhost:8080/listThoughts")
+        const employeeID = localStorage.getItem("id");
+        const params = { employeeID }
+        axios.get("http://localhost:8080/findEmployee", { params })
+        .then(response => {
+            this.setState ({
+                employee: response.data
+            })
+        }).catch(error => {
+            console.log('error finding employee');
+        })
+
+        axios.get("http://localhost:8080/listThoughtsByEmployee", { params })
         .then(response => {
             this.setState ({
                 thoughts: response.data
-            })
-        }).catch(error => {
-            console.log('error retrieving thoughts');
+            });
         })
-    }
-
-    renderThoughts = () => {
-        return this.state.thoughts.map((thought, index) => {
-            return <div className="col mb-4">
-                {thought.thoughtTLDR}
-            </div>
+        .catch(error => {
+            console.log('error listing thoughts by employee');
         })
     }
 
@@ -95,13 +103,41 @@ class Ghud extends Component {
     }
 
     render() {
-        return (
-            <div className="container">
-                <div id="rowTitle" class="row pt-5 px-5">
-                    <div class="col-md-12">
-                        <h1>Headspace</h1>
+
+        let header = (
+            <div id="rowTitle" className="row pt-5 px-5">
+                <div className="col-md-12">
+                    <h1>Headspace</h1>
+                </div>
+            </div>
+        )
+
+        let views = (
+            <p>Please log in to view your headspace</p>
+        )
+
+        if (localStorage.getItem("id") != null) {
+            header = (
+                <div id="rowTitle" className="row pt-5 px-5">
+                    <div className="col-md-12">
+                        <h1>Headspace: {this.state.employee.firstName}</h1>
                     </div>
                 </div>
+            )
+            if(this.state.thoughts.length === 0 && this.state.vibes.length === 0) {
+                views = (
+                    <p>Congratulations- your headspace is clear</p>
+                )
+            }
+            else {
+                views = (null
+                )
+            }
+        }
+
+        return (
+            <div className="container">
+                {header}
                 <div id="rowSubtitle" class="row pt-5 px-5">
                     <div className="mb-3 col-12">
                         <Link to="/" className="btn btn-primary">Back To Main</Link>
@@ -151,7 +187,7 @@ class Ghud extends Component {
                         {/* code for viewing thoughts */}
                         <h3>View Thoughts</h3>
                         <div className="container">
-                            {this.renderThoughts()}
+                            {/* display thoughts in tabular format here */}
                         </div>
 
                     </div>
