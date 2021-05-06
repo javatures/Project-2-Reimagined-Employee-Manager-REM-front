@@ -57,7 +57,7 @@ class Home extends Component {
                     <p className="lead">REM is an employee management tool for supervisors and their direct reports. 
                     It allows users to manage their personal information, set public and private tasks, request reimbursements, and customize their dashboard.</p>
                     <hr className="my-2" />
-                    <p className="lead">Most companies have a different system that can bog down employee production. 
+                    <p className="lead">Most companies have different systems for employee management that can bog down employee production. 
                         We here at REM are looking to remedy this issue with an application that brings all these systems together in one. 
                         Please join us on our journey to bring employee management into the 21st century.</p>
                     {landing}

@@ -55,21 +55,23 @@ class EmployeeProfile extends Component {
 
     renderUpdateForm = () => {
         return <div className="mt-3">
+            <div className="form-text">Fields marked with an asterisk(*) are required</div>
+            <div className="form-text">If you don't want to update a field, leave it as is.</div>
             <form onSubmit={this.updateProfile}>
                 <div className="mb-3 col-md-4">
-                    <label htmlFor="firstName" className="form-label">First name: </label>
+                    <label htmlFor="firstName" className="form-label">First name* </label>
                     <input onChange={this.handleChange} value={this.state.employee.firstName} type="text" className="form-control" id="firstName" name="firstName" required/>
                 </div>
                 <div className="mb-3 col-md-4">
-                    <label htmlFor="lastName" className="form-label">Last name: </label>
+                    <label htmlFor="lastName" className="form-label">Last name* </label>
                     <input onChange={this.handleChange} value={this.state.employee.lastName} type="text" className="form-control" id="lastName" name="lastName" required/>
                 </div>
                 <div className="mb-3 col-md-4">
-                    <label htmlFor="email" className="form-label">Email address: </label>
+                    <label htmlFor="email" className="form-label">Email address* </label>
                     <input onChange={this.handleChange} value={this.state.employee.email} type="email" className="form-control" id="email" name="email" required/>
                 </div>
                 <div className="mb-3 col-md-4">
-                    <label htmlFor="password" className="form-label">Password: </label>
+                    <label htmlFor="password" className="form-label">Password* </label>
                     <input onChange={this.handleChange} value={this.state.employee.password} type="password" className="form-control" id="password" name="password" pattern=".{8,}" aria-describedby="passHelp" required/>
                     <div id="passHelp" className="form-text">Password must be a minimum of 8 characters</div>
                 </div>
