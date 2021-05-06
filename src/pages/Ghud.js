@@ -62,20 +62,6 @@ class Ghud extends Component {
         })
     }
 
-    // listOfThoughts = () => {
-    //     // map each thought from thoughts to a table row
-    //     let tempThoughts = this.state.thoughts.map((thought) =>
-    //         <tr key={thought.thoughtID}>
-    //             <th scope="row">{thought.thoughtID}</th>
-    //             <td>{thought.thoughtFrame}</td>
-    //             <td>{thought.thoughtLocation}</td>
-    //             <td>{thought.thoughtTLDR}</td>
-    //             <td>{thought.vibeID}</td>
-    //         </tr>)
-
-    //     return tempThoughts;
-    // }
-
     deleteVibe = (vibeID, event) => {
         axios.post("http://localhost:8080/deleteVibe", { vibeID })
         .then(response => {
