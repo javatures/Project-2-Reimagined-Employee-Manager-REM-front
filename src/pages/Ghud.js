@@ -234,35 +234,35 @@ class Ghud extends Component {
                     </div>
                 </div>
                 <div id="rowHeading" class="row pt-5 px-5">
-                    <div className="col-md-4">
+                    <div className="col-md-6">
                         <h2>Thought</h2>
                         <br/>
 
                         {/* code for creating thoughts */}
                         <h3>Create A Thought</h3>
                         <form onSubmit={this.handleSubmitThought} className="needs-validation" noValidate>
-                            <div className="mb-3 col-md-4">
+                            <div className="mb-3 col-md-6">
                                 <label htmlFor="thoughtTLDR" className="form-label">Thought TLDR: </label>
                                 <input onChange={this.handleChangeThought} value={this.state.thought.thoughtTLDR} type="text" className="form-control" id="thoughtTLDR" name="thoughtTLDR" required />
                                 <div className="invalid-feedback">
                                     Please enter a thought TLDR.
                                 </div>
                             </div>
-                            <div className="mb-3 col-md-4">
+                            <div className="mb-3 col-md-6">
                                 <label htmlFor="thoughtLocation" className="form-label">Thought Location: </label>
                                 <input onChange={this.handleChangeThought} value={this.state.thought.thoughtLocation} type="text" className="form-control" id="thoughtLocation" name="thoughtLocation" required />
                                 <div className="invalid-feedback">
                                     Please enter a thought location.
                                 </div>
                             </div>
-                            <div className="mb-3 col-md-4">
+                            <div className="mb-3 col-md-6">
                                 <label htmlFor="thoughtFrame" className="form-label">Thought Frame: </label>
                                 <input onChange={this.handleChangeThought} value={this.state.thought.thoughtFrame} type="text" className="form-control" id="thoughtFrame" name="thoughtFrame" required />
                                 <div className="invalid-feedback">
                                     Please enter a thought frame.
                                 </div>
                             </div>
-                            <div className="mb-3 col-md-4">
+                            <div className="mb-3 col-md-6">
                                 <label htmlFor="vibeID" className="form-label">Thought's Vibe ID: </label>
                                 <input onChange={this.handleChangeThought} value={this.state.thought.vibeID} type="text" className="form-control" id="vibeID" name="vibeID" required />
                                 <div className="invalid-feedback">
@@ -281,33 +281,33 @@ class Ghud extends Component {
                         </div>
 
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-md-6">
                         <h2>Vibe</h2>
                         <br/>
                         <h3>Create A Vibe</h3>
                         <form onSubmit={this.handleSubmitVibe} className="needs-validation" noValidate>
-                            <div className="mb-3 col-md-4">
+                            <div className="mb-3 col-md-6">
                                 <label htmlFor="vibeTLDR" className="form-label">Vibe TLDR: </label>
                                 <input onChange={this.handleChangeVibe} value={this.state.vibe.vibeTLDR} type="text" className="form-control" id="vibeTLDR" name="vibeTLDR" required />
                                 <div className="invalid-feedback">
                                     Please enter a vibe TLDR.
                                 </div>
                             </div>
-                            <div className="mb-3 col-md-4">
+                            <div className="mb-3 col-md-6">
                                 <label htmlFor="vibePurpose" className="form-label">Vibe Purpose: </label>
                                 <input onChange={this.handleChangeVibe} value={this.state.vibe.vibePurpose} type="text" className="form-control" id="vibePurpose" name="vibePurpose" required />
                                 <div className="invalid-feedback">
                                     Please enter a vibe purpose.
                                 </div>
                             </div>
-                            <div className="mb-3 col-md-4">
+                            <div className="mb-3 col-md-6">
                                 <label htmlFor="employeeID" className="form-label">Vibee Employee ID: </label>
                                 <input onChange={this.handleChangeVibe} value={this.state.vibe.employeeID} type="text" className="form-control" id="employeeID" name="employeeID" required />
                                 <div className="invalid-feedback">
                                     Plese enter a vibee's employee ID.
                                 </div>
                             </div>
-                            <div className="mb-3 col-md-4">
+                            <div className="mb-3 col-md-6">
                                 <label htmlFor="vibee" className="form-label">Vibee: </label>
                                 <input onChange={this.handleChangeVibe} value={this.state.vibe.vibee} type="text" className="form-control" id="vibee" name="vibee" required />
                                 <div className="invalid-feedback">
@@ -323,10 +323,6 @@ class Ghud extends Component {
                         <div className="container">
                             {viewVibes}
                         </div>
-                    </div>
-                    <div className="col-md-4">
-                        <h2>Soul</h2>
-                        <br/>
                     </div>
                 </div>
             </div>
