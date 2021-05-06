@@ -13,6 +13,7 @@ import Requests from './Requests';
 import PendingRequests from './PendingRequests';
 import EmployeeRegistration from './EmployeeRegistration';
 import Admin from './Admin';
+import ApprovedRequests from './ApprovedRequests';
 
 
 class Layout extends Component {
@@ -39,6 +40,7 @@ class Layout extends Component {
                     <Route path="/requests" component={Requests} />
                     <Route path="/pendingrequests" component={PendingRequests}/>
                     <Route path="/admin" component={Admin} />
+                    <Route path="/approvedrequests" component={ApprovedRequests}/>
                 </div>
             </div>
         );

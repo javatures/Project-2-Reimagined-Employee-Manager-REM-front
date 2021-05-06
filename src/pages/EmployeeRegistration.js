@@ -28,17 +28,17 @@ class EmployeeRegistration extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         axios.post('http://localhost:8080/createEmployeeAccount', this.state.employee)
-        .then(response => {
-            //nav to a thank you page
-            console.log('employee added');
-            console.log(this.state.employee);
-            alert('Registration Successful');
-            this.props.history.push('main');
-        })
-        .catch(error => {
-            alert('Registration failed');
-            //display error message
-        })
+            .then(response => {
+                //nav to a thank you page
+                console.log('employee added');
+                console.log(this.state.employee);
+                alert('Thank you for Registering');
+                this.props.history.push('main');
+            })
+            .catch(error => {
+                alert('Registration failed');
+                //display error message
+            })
     }
 
 
@@ -47,56 +47,32 @@ class EmployeeRegistration extends Component {
         return (
             <div className="container">
                 <h1>Employee Registration Form</h1>
-                <br/>
-                <form onSubmit={this.handleSubmit} className="needs-validation" noValidate>
+                <br />
+                <form onSubmit={this.handleSubmit}>
                     <div className="mb-3 col-md-4">
                         <label htmlFor="firstName" className="form-label">First name: </label>
                         <input onChange={this.handleChange} value={this.state.employee.firstName} type="text" className="form-control" id="firstName" name="firstName" required />
-                        <div className="invalid-feedback">
-                            Please enter your first name.
-                        </div>
                     </div>
                     <div className="mb-3 col-md-4">
                         <label htmlFor="lastName" className="form-label">Last name: </label>
                         <input onChange={this.handleChange} value={this.state.employee.lastName} type="text" className="form-control" id="lastName" name="lastName" required />
-                        <div className="invalid-feedback">
-                            Please enter your last name.
-                        </div>
                     </div>
                     <div className="mb-3 col-md-4">
                         <label htmlFor="email" className="form-label">Email address: </label>
-                        <div className="input-group has-validation">
-                            <input onChange={this.handleChange} value={this.state.employee.email} type="email" className="form-control" id="email" name="email" required />
-                            <div className="invalid-feedback">
-                                Please enter in a vailed email.
-                            </div>
-                        </div>
+                        <input onChange={this.handleChange} value={this.state.employee.email} type="email" className="form-control" id="email" name="email" required />
                     </div>
                     <div className="mb-3 col-md-4">
                         <label htmlFor="password" className="form-label">Password: </label>
                         <input onChange={this.handleChange} value={this.state.employee.password} type="password" className="form-control" id="password" name="password" pattern=".{8,}" aria-describedby="passHelp" required />
                         <div id="passHelp" className="form-text">Password must be a minimum of 8 characters</div>
-                        <div className="invalid-feedback">
-                            Please provide a valid password.
-                        </div>
                     </div>
                     <div className="mb-3 col-md-4">
                         <label htmlFor="typeID" className="form-label">Employment Type: 1:employee/2:superviser</label>
                         <input onChange={this.handleChange} value={this.state.employee.employeeTypeID} type="number" className="form-control" id="employeeTypeID" name="employeeTypeID" required />
-                        <div className="invalid-feedback">
-                            Please select an employment type.
-                        </div>
                     </div>
                     <div className="mb-3 col-4">
-                        <div className="form-check">
-                            <input className="form-check-input" type="checkbox" value="" id="invalidCheck" required />
-                            <label className="form-check-label" htmlFor="invalidCheck">
-                                Agree to terms and conditions
-                            </label>
-                            <div className="invalid-feedback">
-                                You must agree before submitting.
-                            </div>
-                        </div>
+                        <input className="form-check-input" type="checkbox" value="" id="invalidCheck" required />
+                        <label className="form-check-label" htmlFor="invalidCheck">Agree to terms and conditions</label>
                     </div>
                     <div className="mb-3 col-12">
                         <button className="btn btn-primary" type="submit">Submit form</button>

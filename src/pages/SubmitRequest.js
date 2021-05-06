@@ -60,7 +60,7 @@ class SubmitRequest extends Component {
             <div className="container">
                 <h1>Submit a request</h1>
                 <br />
-                <form onSubmit={this.handleSubmit} encType="multipart/form-data">
+                <form onSubmit={this.handleSubmit}>
                     <div className="mb-3 col-md-4">
                         <label htmlFor="reason" className="form-label">Reason:</label>
                         <textarea onChange={this.handleChange} className="form-control" name="reason" id="reason" required/>
