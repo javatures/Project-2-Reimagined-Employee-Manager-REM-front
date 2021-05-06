@@ -76,18 +76,6 @@ class Ghud extends Component {
         return tempThoughts;
     }
 
-    listOfVibes = () => {
-        let tempVibes = this.state.vibes.map((vibe) =>
-            <tr key={vibe.vibeID}>
-                <th scope="row">{vibe.vibeID}</th>
-                <td>{vibe.vibeTLDR}</td>
-                <td>{vibe.vibePurpose}</td>
-                <td>{vibe.vibee}</td>
-            </tr>)
-        
-        return tempVibes;
-    }
-
     thoughtTable = () => {
         return <table className="table">
             <thead>
@@ -113,10 +101,19 @@ class Ghud extends Component {
                     <th scope="col">Vibe TLDR</th>
                     <th scope="col">Vibe Purpose</th>
                     <th scope="col">Vibee</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody className="form-align">
-                {this.listOfVibes()}
+                {this.state.vibes.map((vibe) => (
+                    <tr key={vibe.vibeID}>
+                        <th scope="row">{vibe.vibeID}</th>
+                        <td>{vibe.vibeTLDR}</td>
+                        <td>{vibe.vibePurpose}</td>
+                        <td>{vibe.vibee}</td>
+                        <td><button className="btn btn-danger" onClick={(event) => this.deleteVibe(vibe.vibeID, event)} >Delete</button></td>
+                    </tr>
+                ))}
             </tbody>
         </table>
     }
