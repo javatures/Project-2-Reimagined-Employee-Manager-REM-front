@@ -62,18 +62,42 @@ class Ghud extends Component {
         })
     }
 
-    listOfThoughts = () => {
-        // map each thought from thoughts to a table row
-        let tempThoughts = this.state.thoughts.map((thought) =>
-            <tr key={thought.thoughtID}>
-                <th scope="row">{thought.thoughtID}</th>
-                <td>{thought.thoughtFrame}</td>
-                <td>{thought.thoughtLocation}</td>
-                <td>{thought.thoughtTLDR}</td>
-                <td>{thought.vibeID}</td>
-            </tr>)
+    // listOfThoughts = () => {
+    //     // map each thought from thoughts to a table row
+    //     let tempThoughts = this.state.thoughts.map((thought) =>
+    //         <tr key={thought.thoughtID}>
+    //             <th scope="row">{thought.thoughtID}</th>
+    //             <td>{thought.thoughtFrame}</td>
+    //             <td>{thought.thoughtLocation}</td>
+    //             <td>{thought.thoughtTLDR}</td>
+    //             <td>{thought.vibeID}</td>
+    //         </tr>)
 
-        return tempThoughts;
+    //     return tempThoughts;
+    // }
+
+    deleteVibe = (vibeID, event) => {
+        axios.post("http://localhost:8080/deleteVibe", { vibeID })
+        .then(response => {
+            alert('Vibe Deleted');
+            window.location.reload();
+        })
+        .catch(error => {
+            alert('failed to delete vibe');
+            window.location.reload();
+        })
+    }
+
+    deleteThought = (thoughtID, event) => {
+        axios.post("http://localhost:8080/deleteThought", { thoughtID })
+        .then(response => {
+            alert('Thought Deleted');
+            window.location.reload();
+        })
+        .catch(error => {
+            alert('failed to delete thought');
+            window.location.reload();
+        })
     }
 
     thoughtTable = () => {
@@ -85,10 +109,20 @@ class Ghud extends Component {
                     <th scope="col">Thought Location</th>
                     <th scope="col">Thought TLDR</th>
                     <th scope="col">Thought Vibe</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody className="form-align">
-                {this.listOfThoughts()}
+                {this.state.thoughts.map((thought) => (
+                    <tr key={thought.thoughtID}>
+                        <th scope="row">{thought.thoughtID}</th>
+                        <td>{thought.thoughtTLDR}</td>
+                        <td>{thought.thoughtLocation}</td>
+                        <td>{thought.thoughtFrame}</td>
+                        <td>{thought.vibeID}</td>
+                        <td><button className="btn btn-danger" onClick={(event) => this.deleteThought(thought.thoughtID, event)} >Delete</button></td>
+                    </tr>
+                ))}
             </tbody>
         </table>
     }
@@ -112,8 +146,7 @@ class Ghud extends Component {
                         <td>{vibe.vibePurpose}</td>
                         <td>{vibe.vibee}</td>
                         <td><button className="btn btn-danger" onClick={(event) => this.deleteVibe(vibe.vibeID, event)} >Delete</button></td>
-                    </tr>
-                ))}
+                    </tr>))}
             </tbody>
         </table>
     }
