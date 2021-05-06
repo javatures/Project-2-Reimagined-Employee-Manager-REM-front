@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-class PendingRequests extends Component {
+class ApprovedRequests extends Component {
     state = {
         requests: []
     }
@@ -44,4 +44,4 @@ class PendingRequests extends Component {
     }
 }
 
-export default PendingRequests;
+export default ApprovedRequests;
