@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {RangeStepInput} from 'react-range-step-input';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+
 
 class DashboardConfig extends Component {
     constructor(props) {
@@ -71,9 +73,17 @@ class DashboardConfig extends Component {
     handleSubmit = (event) => {
         //save color to database
         event.preventDefault();
-        let color = "rgb("+this.state.valueR+","+this.state.valueG+","+this.state.valueB+")";
+        let color = {"blue":this.state.valueR,"green":this.state.valueG, "red":this.state.valueB};
         console.log(color);
-        
+        axios.post('http://localhost:8080/saveDashboardColor', color)
+        .then(response => {
+            //nav to headspace with "thought created" confirmation message
+            console.log('color saved');
+            alert('Dashboard Color Saved');
+        })
+        .catch(error => {
+            alert('Failed to Save Color');
+        })
     }
     handleChangeR = (event) => {
         const value = event.target.value;
@@ -103,5 +113,4 @@ class DashboardConfig extends Component {
     
     
 }
-
 export default DashboardConfig;
