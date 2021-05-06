@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {RangeStepInput} from 'react-range-step-input';
 import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 class DashboardConfig extends Component {
     constructor(props) {

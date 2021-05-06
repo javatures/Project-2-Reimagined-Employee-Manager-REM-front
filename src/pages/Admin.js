@@ -6,6 +6,10 @@ class Admin extends Component {
 
     state = {
         employee: {},
+        emp: {
+            employeeID: '',
+            managerID: ''
+        },
         employeeList: []
     }
 
@@ -21,7 +25,6 @@ class Admin extends Component {
             .catch(error => {
                 // display error message
             })
-
         axios.get('http://localhost:8080/listEmployees')
             .then(response => {
                 this.setState({
@@ -36,16 +39,16 @@ class Admin extends Component {
     handleChange = (event) => {
         const value = event.target.value;
         const name = event.target.name;
-        const tempEmployee = { ...this.state.employee };
+        const tempEmployee = { ...this.state.emp };
         tempEmployee[name] = value;
         this.setState({
-            employee: tempEmployee
+            emp: tempEmployee
         });
     }
 
     updateEmployeeManager = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:8080/updateEmployeeManager', this.state.employee)
+        axios.post('http://localhost:8080/updateEmployeeManager', this.state.emp)
         .then(response => {
             //nav to a thank you page
             console.log('employee added');
@@ -75,37 +78,24 @@ class Admin extends Component {
             <p className="lead">You have the power to make changes that no one else can. Use this power wisely.</p>
             <hr className="my-4" />
             <p>"With great power comes great responsibility"</p>
-            <Link to="/main" className="btn btn-primary">Return</Link>
+            <Link to="/portal" className="btn btn-primary">Return</Link>
         </div>
     }
 
     assignManager = () => {
-        return <form className="container">
+        return <form onSubmit={this.updateEmployeeManager} className="container">
             <div className="mb-3 col-md-4">
                 <label htmlFor="employeeID" className="form-label">Employee ID:</label>
-                <input type="number" className="form-control" name="employeeID" id="employeeID" />
+                <input onChange={this.handleChange} value={this.state.emp.employeeID} type="number" className="form-control" name="employeeID" id="employeeID" />
             </div>
             <div className="mb-3 col-md-4">
                 <label htmlFor="managerID" className="form-label">Manager ID:</label>
-                <input type="number" className="form-control" name="managerID" id="managerID" />
+                <input onChange={this.handleChange} value={this.state.emp.managerID} type="number" className="form-control" name="managerID" id="managerID" />
             </div>
             <div className="mb-3 col-md-4">
                 <button type="submit" className="btn btn-primary">Submit</button>
             </div>
         </form>
-    }
-
-    listOfEmployees = () => {
-        let tempEmployee = this.state.employeeList.map((emp) =>
-            <tr key={emp.employeeID}>
-                <th scope="row">{emp.employeeID}</th>
-                <td>{emp.firstName} {emp.lastName}</td>
-                <td>{emp.managerID}</td>
-                <td></td>
-            </tr>
-        )
-
-        return tempEmployee
     }
 
     listEmployeesToAssign = () => {
@@ -117,11 +107,19 @@ class Admin extends Component {
                         <th scope="col">Employee ID</th>
                         <th scope="col">Employee Name</th>
                         <th scope="col">Managers ID</th>
+                        <th scope="col">Type ID</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody className="form-align">
-                    {this.listOfEmployees()}
+                    {this.state.employeeList.map((emp) => (
+                        <tr key={emp.employeeID}>
+                            <th scope="row">{emp.employeeID}</th>
+                            <td>{emp.firstName} {emp.lastName}</td>
+                            <td>{emp.managerID}</td>
+                            <td>{emp.employeeTypeID}</td>
+                            <td></td>
+                        </tr>))}
                 </tbody>
             </table>
         </aside>
