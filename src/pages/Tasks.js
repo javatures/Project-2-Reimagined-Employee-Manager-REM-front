@@ -36,6 +36,19 @@ class Tasks extends Component {
             })
             .catch(error => {
                 alert('failed to assign task')
+                window.location.reload()
+            })
+    }
+
+    completeTask = (taskID, event) => {
+        axios.post('http://localhost:8080/deleteTask', {taskID})
+            .then(response => {
+                alert('Task Compleated')
+                window.location.reload()
+            })
+            .catch(error =>{
+                alert('failed to mark task as compleate')
+                window.location.reload()    
             })
     }
 
@@ -62,7 +75,7 @@ class Tasks extends Component {
                 console.log('an error has happed')
             })
 
-        axios.get('http://localhost:8080/listEmployees')
+        axios.get('http://localhost:8080/listEmployeesByManager', {params})
             .then(response => {
                 this.setState({
                     employeeList: response.data
@@ -73,63 +86,30 @@ class Tasks extends Component {
             })
     }
 
-    listOfTasks = () => {
-        let tempTasks = this.state.taskList.map((task) =>
-            <tr key={task.taskID}>
-                <th scope="row">{task.taskID}</th>
-                <td>{task.taskDueDate}</td>
-                <td>{task.taskName}</td>
-                <td>{task.taskDescription}</td>
-                <td>{task.employeeID}</td>
-                <td></td>
-            </tr>)
-
-        return tempTasks
-
-    }
-
-    listOfEmployees = () => {
-        let tempEmployee = this.state.employeeList.map((emp) =>
-            <tr key={emp.employeeID}>
-                <th scope="row">{emp.employeeID}</th>
-                <td>{emp.firstName} {emp.lastName}</td>
-                <td></td>
-            </tr>
-        )
-
-        return tempEmployee
-    }
-
-    compleateTask = () => {
-        return <div style={{float: 'left', display: 'block'}}> 
-        <form>
-            <div className="col-5 bg-over">
-                <label htmlFor="taskID">ID of task to be compleated:</label>
-                <input type="number" name="taskID" id="taskID" />
-                <button type="submit" className="btn btn-primary mt-3">Compleate</button>
-            </div>
-        </form>
-        </div>
-    }
-
     taskTable = () => {
-        return <aside style={{ float: "right", marginRight: 200 }}>
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Task ID</th>
-                        <th scope="col">Task Do Date</th>
-                        <th scope="col">Task Name</th>
-                        <th scope="col">Task Discription</th>
-                        <th scope="col">Task Assigned To</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody className="form-align">
-                    {this.listOfTasks()}
-                </tbody>
-            </table>
-        </aside>
+        return <table className="table">
+            <thead>
+                <tr>
+                    <th scope="col">Task ID</th>
+                    <th scope="col">Task Do Date</th>
+                    <th scope="col">Task Name</th>
+                    <th scope="col">Task Discription</th>
+                    <th scope="col">Task Assigned To</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody className="form-align">
+                {this.state.taskList.map((task) => (
+                    <tr key={task.taskID}>
+                        <th scope="row">{task.taskID}</th>
+                        <td>{task.taskDueDate}</td>
+                        <td>{task.taskName}</td>
+                        <td>{task.taskDescription}</td>
+                        <td>{task.employeeID}</td>
+                        <td><button className="btn btn-primary" onClick={(event) => this.completeTask(task.taskID, event)} >Complete</button></td>
+                    </tr>))}
+            </tbody>
+        </table>
     }
 
     taskForm = () => {
@@ -158,21 +138,27 @@ class Tasks extends Component {
 
     listEmployeesOver = () => {
         return <div>
-            <aside style={{float: "right", marginRight: 50, marginTop: 5}}>
-            <table className="table caption-top ">
-            <caption>List of employees under you</caption>
-            <thead>
-                <tr>
-                    <th scope="col">Employee ID</th>
-                    <th scope="col">Employee Name</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody className="form-align">
-                {this.listOfEmployees()}
-            </tbody>
-        </table>
-                </aside>
+            <aside style={{ float: "right", marginRight: 50, marginTop: 5 }}>
+                <table className="table caption-top ">
+                    <caption>List of employees under you</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Employee ID</th>
+                            <th scope="col">Employee Name</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody className="form-align">
+                        {this.state.employeeList.map((emp) => (
+                            <tr key={emp.employeeID}>
+                                <th scope="row">{emp.employeeID}</th>
+                                <td>{emp.firstName} {emp.lastName}</td>
+                                <td></td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </aside>
         </div>
     }
 
@@ -190,17 +176,21 @@ class Tasks extends Component {
             null
         )
         
-        let viewCompleate = (
-            null
-        )
 
         let viewEployeesOver = (
             null
         )
 
+        let redirect = (
+            <Link to="/" className="btn btn-primary mt-3">Main</Link>
+        )
+
         if (localStorage.getItem("id") != null) {
             header = (
                 <h1>Welcome {this.state.employee.firstName} {this.state.employee.lastName} ({this.state.employee.employeeID})</h1>
+            )
+            redirect = (
+                <Link to="/portal" className="btn btn-primary mt-3">Profile</Link>
             )
             if (localStorage.getItem("type") === "1") {
                 if(this.state.taskList.length === 0) {
@@ -212,7 +202,6 @@ class Tasks extends Component {
                     views = (
                         <p>Here are the list of tasks for you to compleate</p>
                     )
-                    viewCompleate = this.compleateTask()
                     viewTask = this.taskTable()
                 }
             }
@@ -220,7 +209,7 @@ class Tasks extends Component {
                 views = (
                     <p>Please create tasks for your employees whom you supervise to compleate</p>
                 )
-                if (localStorage.getItem("id") === localStorage.getItem("managerID")) {
+                if (this.state.employeeList.length !== 0) {
                     viewEployeesOver = this.listEmployeesOver()
                     viewTask = this.taskForm()
                 }
@@ -238,9 +227,8 @@ class Tasks extends Component {
                 {header}
                 {views}
                 {viewEployeesOver}
-                {viewCompleate}
                 {viewTask}
-                <Link to="/" className="btn btn-primary mt-3">Main</Link>
+                {redirect}
             </div>
         );
     }
