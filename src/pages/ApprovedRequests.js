@@ -29,7 +29,7 @@ class PendingRequests extends Component {
                 <h1>Your pending requests</h1>
                 <ul>
                     {this.state.requests.map(request => (
-                        !request.approved ?
+                        request.approved ?
                         <li>
                             <p>Description: {request.description}</p>
                             <p>Amount: ${request.amount}</p>
