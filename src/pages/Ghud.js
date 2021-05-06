@@ -11,7 +11,8 @@ class Ghud extends Component {
             vibeID: '',
             vibeTLDR: '',
             vibePurpose: '',
-            employeeID: ''
+            employeeID: '',
+            vibee: '',
         },
 
         thought: {
@@ -50,6 +51,15 @@ class Ghud extends Component {
             console.log('error listing thoughts by employee');
         })
 
+        axios.get("http://localhost:8080/listVibesByEmployee", { params })
+        .then(response => {
+            this.setState ({
+                vibes: response.data
+            });
+        })
+        .catch(error => {
+            console.log('error listing vibes by employee');
+        })
     }
 
     listOfThoughts = () => {
@@ -61,10 +71,21 @@ class Ghud extends Component {
                 <td>{thought.thoughtLocation}</td>
                 <td>{thought.thoughtTLDR}</td>
                 <td>{thought.vibeID}</td>
-                <td>{thought.employeeID}</td>
             </tr>)
 
         return tempThoughts;
+    }
+
+    listOfVibes = () => {
+        let tempVibes = this.state.vibes.map((vibe) =>
+            <tr key={vibe.vibeID}>
+                <th scope="row">{vibe.vibeID}</th>
+                <td>{vibe.vibeTLDR}</td>
+                <td>{vibe.vibePurpose}</td>
+                <td>{vibe.vibee}</td>
+            </tr>)
+        
+        return tempVibes;
     }
 
     thoughtTable = () => {
@@ -76,11 +97,26 @@ class Ghud extends Component {
                     <th scope="col">Thought Location</th>
                     <th scope="col">Thought TLDR</th>
                     <th scope="col">Thought Vibe</th>
-                    <th scope="col">Thought Employee</th>
                 </tr>
             </thead>
             <tbody className="form-align">
                 {this.listOfThoughts()}
+            </tbody>
+        </table>
+    }
+
+    vibeTable = () => {
+        return <table className="table">
+            <thead>
+                <tr>
+                    <th scope="col">Vibe ID</th>
+                    <th scope="col">Vibe TLDR</th>
+                    <th scope="col">Vibe Purpose</th>
+                    <th scope="col">Vibee</th>
+                </tr>
+            </thead>
+            <tbody className="form-align">
+                {this.listOfVibes()}
             </tbody>
         </table>
     }
@@ -177,7 +213,17 @@ class Ghud extends Component {
             else {
                 viewThoughts = this.thoughtTable();
             }
-        }
+            if(this.state.vibes.length === 0) {
+                viewVibes = (
+                    <p>
+                        Radical- you are vibing.
+                    </p>
+                )
+            }
+            else {
+                viewVibes = this.vibeTable();
+            }
+        } 
 
         return (
             <div className="container">
@@ -261,10 +307,22 @@ class Ghud extends Component {
                                     Plese enter a vibee's employee ID.
                                 </div>
                             </div>
+                            <div className="mb-3 col-md-4">
+                                <label htmlFor="vibee" className="form-label">Vibee: </label>
+                                <input onChange={this.handleChangeVibe} value={this.state.vibe.vibee} type="text" className="form-control" id="vibee" name="vibee" required />
+                                <div className="invalid-feedback">
+                                    Plese enter a vibee.
+                                </div>
+                            </div>
                             <div className="mb-3 col-12">
                                 <button className="btn btn-primary" type="submit">Submit vibe</button>
                             </div>
                         </form>
+
+                        <h3>View Vibes</h3>
+                        <div className="container">
+                            {viewVibes}
+                        </div>
                     </div>
                     <div className="col-md-4">
                         <h2>Soul</h2>
