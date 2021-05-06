@@ -8,6 +8,7 @@ class DashboardConfig extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            employeeID: 0,
             valueR: 127,
             valueG: 127,
             valueB: 127
@@ -16,6 +17,7 @@ class DashboardConfig extends Component {
     
     
     render() {
+
         return (
 
             <div className="container">
@@ -70,10 +72,38 @@ class DashboardConfig extends Component {
             </div>
         );
     }
+
+    componentDidMount(){
+        const employeeID = localStorage.getItem("id");
+        const params ={
+            employeeID
+        }
+        console.log(params);
+        if (employeeID !== "0"){
+            axios.get('http://localhost:8080/getDashboardColor', {params}).then(
+            response=>{
+                this.setState(
+                    {
+                        employeeID: employeeID,
+                        valueR: response.data.red,
+                        valueG: response.data.green,
+                        valueB: response.data.blue
+                    }
+                )
+            }
+        ).catch(error=>
+            console.log(error)
+            )
+        }
+        
+
+    
+    }
+
     handleSubmit = (event) => {
         //save color to database
         event.preventDefault();
-        let color = {"blue":this.state.valueR,"green":this.state.valueG, "red":this.state.valueB};
+        let color = {"employeeID": localStorage.getItem("id"),"red":this.state.valueR,"green":this.state.valueG, "blue":this.state.valueB};
         console.log(color);
         axios.post('http://localhost:8080/saveDashboardColor', color)
         .then(response => {
