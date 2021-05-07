@@ -92,7 +92,7 @@ class PendingRequests extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
 
-        if (this.state.requests.find(request => request.reimbursementID === this.state.reimbursement.reimbursementID) === undefined) {
+        if (this.state.requests.find(request => request.reimbursementID.toString() === this.state.reimbursement.reimbursementID) === undefined) {
             alert("That is not a valid request ID.");
             return;
         }
