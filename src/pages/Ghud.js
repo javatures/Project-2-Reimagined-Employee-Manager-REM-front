@@ -199,9 +199,9 @@ class Ghud extends Component {
             </div>
         )
 
-        let views = (
+        /* let views = (
             <p>Please log in to view your headspace</p>
-        )
+        ) */
 
         let viewThoughts = (
             null
