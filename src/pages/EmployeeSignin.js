@@ -34,7 +34,7 @@ class EmployeeSignin extends Component {
             localStorage.setItem("lastName", response.data.lastName);
             localStorage.setItem("managerID", response.data.managerID);
             console.log(response.data.employeeTypeID);
-            alert('Login successfull');
+            alert('Login successful');
             this.props.history.push('/portal');            
 
         })
