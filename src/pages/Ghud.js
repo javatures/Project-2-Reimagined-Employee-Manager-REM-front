@@ -159,9 +159,14 @@ class Ghud extends Component {
 
     handleSubmitThought = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:8080/createThought', this.state.thought)
+        let thoughtToSubmit = {
+            "thoughtID":this.state.thought.thoughtID,
+            "thoughtFrame":this.state.thought.thoughtFrame,
+            "thoughtLocation":this.state.thought.thoughtLocation,
+            "thoughtTLDR":this.state.thought.thoughtTLDR, "vibeID":this.state.thought.vibeID,
+            "employeeID":localStorage.getItem("id")};
+        axios.post('http://localhost:8080/createThought', thoughtToSubmit)
         .then(response => {
-            //nav to headspace with "thought created" confirmation message
             console.log('thought created');
             console.log(this.state.thought);
             alert('Thought Creation Successful');
@@ -175,9 +180,15 @@ class Ghud extends Component {
 
     handleSubmitVibe = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:8080/createVibe', this.state.vibe)
+        let vibeToSubmit = {
+            "vibeID":this.state.vibe.vibeID,
+            "vibeTLDR":this.state.vibe.vibeTLDR,
+            "vibePurpose":this.state.vibe.vibePurpose,
+            "employeeID":localStorage.getItem("id"),
+            "vibee":this.state.vibe.vibee
+        };
+        axios.post('http://localhost:8080/createVibe', vibeToSubmit)
         .then(response => {
-            //nav to headspace with "vibe created" confirmation message
             console.log('vibe created');
             console.log(this.state.vibe);
             alert('Vibe Creation Successful');
@@ -198,10 +209,6 @@ class Ghud extends Component {
                 </div>
             </div>
         )
-
-        /* let views = (
-            <p>Please log in to view your headspace</p>
-        ) */
 
         let viewThoughts = (
             null
@@ -316,13 +323,13 @@ class Ghud extends Component {
                                     Please enter a vibe purpose.
                                 </div>
                             </div>
-                            <div className="mb-3 col-md-6">
+                            {/* <div className="mb-3 col-md-6">
                                 <label htmlFor="employeeID" className="form-label">Vibee Employee ID: </label>
                                 <input onChange={this.handleChangeVibe} value={this.state.vibe.employeeID} type="text" className="form-control" id="employeeID" name="employeeID" required />
                                 <div className="invalid-feedback">
                                     Plese enter a vibee's employee ID.
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="mb-3 col-md-6">
                                 <label htmlFor="vibee" className="form-label">Vibee: </label>
                                 <input onChange={this.handleChangeVibe} value={this.state.vibe.vibee} type="text" className="form-control" id="vibee" name="vibee" required />
