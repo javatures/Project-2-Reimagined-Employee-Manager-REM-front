@@ -47,7 +47,7 @@ class EmployeeRegistration extends Component {
         return (
             <div className="container">
                 <h1>Employee Registration Form</h1>
-                <div className="form-text">Fields marked with an asterisk(*) are required</div>
+                <div className="form-text">Fields marked with an asterisk(*) are required.</div>
                 <br />
                 <form onSubmit={this.handleSubmit}>
                     <div className="mb-3 col-md-4">
@@ -65,12 +65,12 @@ class EmployeeRegistration extends Component {
                     <div className="mb-3 col-md-4">
                         <label htmlFor="password" className="form-label">Password* </label>
                         <input onChange={this.handleChange} value={this.state.employee.password} type="password" className="form-control" id="password" name="password" pattern=".{8,}" aria-describedby="passHelp" required />
-                        <div id="passHelp" className="form-text">Password must be a minimum of 8 characters</div>
+                        <div id="passHelp" className="form-text">Password must be a minimum of 8 characters.</div>
                     </div>
                     <div className="mb-3 col-md-4">
                         <label htmlFor="typeID" className="form-label">Employment Type* </label>
                         <input onChange={this.handleChange} value={this.state.employee.employeeTypeID} type="number" className="form-control" id="employeeTypeID" name="employeeTypeID" required />
-                        <div className="form-text">1:employee/2:superviser</div>
+                        <div className="form-text">1:employee/2:supervisor</div>
                     </div>
                     <div className="mb-3 col-4">
                         <input className="form-check-input" type="checkbox" value="" id="invalidCheck" required />

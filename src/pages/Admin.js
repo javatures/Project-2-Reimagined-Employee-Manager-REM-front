@@ -32,7 +32,7 @@ class Admin extends Component {
                 });
             })
             .catch(error => {
-                console.log('an error has happed')
+                console.log('An error has occurred!')
             })
     }
 

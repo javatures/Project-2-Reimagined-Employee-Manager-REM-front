@@ -55,7 +55,7 @@ class EmployeeProfile extends Component {
 
     renderUpdateForm = () => {
         return <div className="mt-3">
-            <div className="form-text">Fields marked with an asterisk(*) are required</div>
+            <div className="form-text">Fields marked with an asterisk(*) are required.</div>
             <div className="form-text">If you don't want to update a field, leave it as is.</div>
             <form onSubmit={this.updateProfile}>
                 <div className="mb-3 col-md-4">
@@ -73,7 +73,7 @@ class EmployeeProfile extends Component {
                 <div className="mb-3 col-md-4">
                     <label htmlFor="password" className="form-label">Password* </label>
                     <input onChange={this.handleChange} value={this.state.employee.password} type="password" className="form-control" id="password" name="password" pattern=".{8,}" aria-describedby="passHelp" required/>
-                    <div id="passHelp" className="form-text">Password must be a minimum of 8 characters</div>
+                    <div id="passHelp" className="form-text">Password must be a minimum of 8 characters.</div>
                 </div>
                 <div className="mb-3 col-md-4">
                     <button className="btn btn-primary" type="submit">Update</button>
@@ -105,7 +105,7 @@ class EmployeeProfile extends Component {
                 <button onClick={this.signOut} className="btn btn-primary ms-3">Sign Out</button>
             )
             header = (
-                <h1>Welcome {this.state.employee.firstName} {this.state.employee.lastName}</h1>
+                <h1>Welcome, {this.state.employee.firstName} {this.state.employee.lastName}</h1>
             )
             mainUpdate = (
                 null
@@ -116,7 +116,7 @@ class EmployeeProfile extends Component {
         return (
             <div className="container">
                 {header}
-                <p>central hub for employees to navagate REM</p>
+                <p>Central hub for employees to navigate REM</p>
                 {mainUpdate}
                 {buttonSignin}
                 {updateForm}

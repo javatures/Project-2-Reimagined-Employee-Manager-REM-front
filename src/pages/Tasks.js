@@ -91,9 +91,9 @@ class Tasks extends Component {
             <thead>
                 <tr>
                     <th scope="col">Task ID</th>
-                    <th scope="col">Task Do Date</th>
+                    <th scope="col">Task Due Date</th>
                     <th scope="col">Task Name</th>
-                    <th scope="col">Task Discription</th>
+                    <th scope="col">Task Description</th>
                     <th scope="col">Task Assigned To</th>
                     <th scope="col"></th>
                 </tr>
@@ -127,7 +127,7 @@ class Tasks extends Component {
                 <input onChange={this.handleChange} value={this.state.tasks.taskDueDate} type="text" className="form-control" name="taskDueDate" id="taskDueDate" />
             </div>
             <div className="mb-3 col-md-4">
-                <label htmlFor="employeeID" className="form-label">Employee assined to:</label>
+                <label htmlFor="employeeID" className="form-label">Employee assigned to:</label>
                 <input onChange={this.handleChange} value={this.state.tasks.employeeID} type="number" className="form-control" name="employeeID" id="employeeID" />
             </div>
             <div className="mb-3 col-md-4">
@@ -195,19 +195,19 @@ class Tasks extends Component {
             if (localStorage.getItem("type") === "1") {
                 if(this.state.taskList.length === 0) {
                     views = (
-                        <p>There are no tasks for you to compleate</p>
+                        <p>There are no tasks for you to complete</p>
                     )
                 }
                 else {
                     views = (
-                        <p>Here are the list of tasks for you to compleate</p>
+                        <p>Here are the list of tasks for you to complete</p>
                     )
                     viewTask = this.taskTable()
                 }
             }
             if (localStorage.getItem("type") === "2") {
                 views = (
-                    <p>Please create tasks for your employees whom you supervise to compleate</p>
+                    <p>Please create tasks for the employees you supervise to complete</p>
                 )
                 if (this.state.employeeList.length !== 0) {
                     viewEployeesOver = this.listEmployeesOver()
